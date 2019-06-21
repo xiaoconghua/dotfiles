@@ -1,7 +1,7 @@
 set nocompatible
 let g:mapleader=" "
 
-call plug#begin('~/.vim/vendor')
+call plug#begin('~/.config/nvim/plugged')
 
 if !has('nvim') && !exists('g:gui_oni') | Plug 'tpope/vim-sensible' | endif
 Plug 'rstacruz/vim-opinion'
@@ -48,22 +48,22 @@ Plug 'tpope/vim-repeat'
 "" vim-commentary (Comment stuff out...)
 Plug 'tpope/vim-commentary'
 
-"" YouCompleteMe (code completion)
-Plug 'Valloric/YouCompleteMe'
-"Youcompleteme fix
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+""" YouCompleteMe (code completion)
+""Plug 'Valloric/YouCompleteMe'
+"""Youcompleteme fix
+""let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 "" vim-clang-format
 Plug 'rhysd/vim-clang-format'
 
-""if has('nvim')
-""  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-""else
-""  Plug 'Shougo/deoplete.nvim'
-""  Plug 'roxma/nvim-yarp'
-""  Plug 'roxma/vim-hug-neovim-rpc'
-""endif
-""let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
@@ -128,6 +128,8 @@ let mapleader = ","
 """"""""""""""""""""
 "" User interface ""
 """"""""""""""""""""
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "" Set scrolloff (how many lines above and below cursor should be visible)
 set so=10
